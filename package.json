@@ -1,17 +1,25 @@
 {
-  "name": "dbproject",
-  "version": "1.0.0",
-  "description": "Farewell Management System using NodeJS",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Triple A Grinders",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
-    "mysql": "^2.18.1"
-  }
+    "name": "dbproject",
+    "version": "1.0.0",
+    "description": "Farewell Management System using NodeJS",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "tailwind:css": "postcss public/css/tailwind.css -o public/css/style.css"
+    },
+    "author": "Triple A Grinders",
+    "license": "ISC",
+    "dependencies": {
+        "autoprefixer": "^10.4.19",
+        "body-parser": "^1.20.2",
+        "ejs": "^3.1.10",
+        "express": "^4.19.2",
+        "flowbite": "^2.3.0",
+        "mysql": "^2.18.1",
+        "postcss": "^8.4.38",
+        "postcss-cli": "^11.0.0"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.4.3"
+    }
 }

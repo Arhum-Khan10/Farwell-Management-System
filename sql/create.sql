@@ -1,11 +1,9 @@
--- Active: 1709544121297@@127.0.0.1@3306@northwind
 -- Create the database
 CREATE DATABASE IF NOT EXISTS `fms`;
 
 -- Use the database
 USE `fms`;
 
--- Create the table IF NOT EXISTSs
 -- Create Student tablea
 CREATE TABLE IF NOT EXISTS Student (
     StudentID INT PRIMARY KEY,
