@@ -1,7 +1,8 @@
 // global imports
 const express = require("express"),
-    db = require("./config/database.js"),
+    db = require("./config/database"),
     bodyParser = require("body-parser"),
+    indexRouter = require('./routes/index');
     app = express(),
     port = 10000;
 
@@ -17,19 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // routes
-app.get("/", (req, res) => {
-    res.render("index");
-});
-
-app.get("/signup", (req, res) => {
-    res.render("signup");
-});
-
-app.get("/login", (req, res) => {
-    res.render("login");
-});
+app.use('/', indexRouter);
 
 // port
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    date = new Date();
+    console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} - Server is running on port ${port}`);
 });

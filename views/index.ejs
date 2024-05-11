@@ -1,9 +1,82 @@
 <%-include("./partials/header")-%>
 <body>
-    <div class="flex flex-col justify-center items-center h-screen gap-6">
-        <h1 class="text-6xl">Index</h1>
-        <button class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"><a href="/login">Login</a></button>
-        <button class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"><a href="/signup">Signup</a></button>
-    </div>
+    <div class="antialiased bg-gray-50 dark:bg-gray-900">
+        <!-- Sidebar -->
+        <aside
+          class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+          aria-label="Sidenav"
+          id="drawer-navigation"
+        >
+        
+        <!-- Nav Items -->
+          <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <span class="ml-3">Dashboard</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+    
+        <!-- Main -->
+        <main class="p-4 md:ml-64 h-auto pt-20">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+            <div
+              class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
+            ></div>
+          </div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
+          ></div>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+            ></div>
+          </div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
+          ></div>
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+            ></div>
+            <div
+              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+            ></div>
+          </div>
+        </main>
+      </div>
+
+      <!-- Flowbite JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
