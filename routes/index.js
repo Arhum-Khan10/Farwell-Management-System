@@ -6,7 +6,7 @@ const authRouter = require('./auth');
 const menuRouter = require('./menu');
 const performanceRouter = require('./performance');
 const taskRouter = require('./tasks');
-// const attendanceRouter = require('./attendance');
+const attendanceRouter = require('./attendance');
 // const budgetRouter = require('./budget');
 // const reportRouter = require('./reports');
 
@@ -15,7 +15,7 @@ router.use('/', authRouter);
 router.use('/menu', menuRouter);
 router.use('/performances', performanceRouter);
 router.use('/tasks', taskRouter);
-// router.use('/attendance', attendanceRouter);
+router.use('/attendance', attendanceRouter);
 // router.use('/budget', budgetRouter);
 // router.use('/reports', reportRouter);
 

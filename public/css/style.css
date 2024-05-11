@@ -1408,6 +1408,10 @@ input:checked + .toggle-bg {
 .bg-gray-900\/50 {
   background-color: rgb(17 24 39 / 0.5);
 }
+.bg-green-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(4 108 78 / var(--tw-bg-opacity));
+}
 .bg-primary-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(147 51 234 / var(--tw-bg-opacity));
@@ -1660,6 +1664,10 @@ input:checked + .toggle-bg {
 .hover\:bg-gray-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.hover\:bg-green-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 84 63 / var(--tw-bg-opacity));
 }
 .hover\:bg-primary-700:hover {
   --tw-bg-opacity: 1;

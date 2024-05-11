@@ -1,4 +1,4 @@
--- DROP DATABASE IF EXISTS `fms`;
+DROP DATABASE IF EXISTS `fms`;
 
 -- Create the database
 CREATE DATABASE IF NOT EXISTS `fms`;
@@ -59,40 +59,18 @@ CREATE TABLE IF NOT EXISTS MenuItem (
     Votes INT
 );
 
-CREATE TABLE IF NOT EXISTS Venue (
-    VenueID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100),
-    Location VARCHAR(100),
-    Capacity INT
-);
-
 -- Create Attendance table IF NOT EXISTS
 CREATE TABLE IF NOT EXISTS Attendance (
     AttendanceID INT PRIMARY KEY AUTO_INCREMENT,
     StudentID INT,
-    TeacherID INT,
-    FamilyMemberID INT,
-    VenueID INT,
-    FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
-    FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID),
-    FOREIGN KEY (FamilyMemberID) REFERENCES FamilyMember(FamilyMemberID),
-    FOREIGN KEY (VenueID) REFERENCES Venue(VenueID)
+    Status VARCHAR(50) DEFAULT 'Absent',
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
 );
 
 -- Create Budget table IF NOT EXISTS
 CREATE TABLE IF NOT EXISTS Budget (
     BudgetID INT PRIMARY KEY AUTO_INCREMENT,
     Item VARCHAR(100),
-    Expense DECIMAL(10, 2),
-    Category VARCHAR(100),
-    VenueID INT,
-    FOREIGN KEY (VenueID) REFERENCES Venue(VenueID)
+    Amount DECIMAL(10, 2),
+    Category VARCHAR(100)
 );
-
--- Create Decorations table IF NOT EXISTS
-CREATE TABLE IF NOT EXISTS Decorations (
-    DecorationID INT PRIMARY KEY AUTO_INCREMENT,
-    Description VARCHAR(255),
-    Cost DECIMAL(10, 2)
-);
-
