@@ -21,7 +21,7 @@
               <li>
                 <a
                   href="/menu"
-                  class="inline-flex items-center px-4 py-3 text-white bg-blue-700 rounded-lg active w-full dark:bg-blue-600"
+                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   <span class="ml-3">Menu</span>
                 </a>
@@ -29,7 +29,7 @@
               <li>
                 <a
                   href="/performances"
-                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  class="inline-flex items-center px-4 py-3 text-white bg-blue-700 rounded-lg active w-full dark:bg-blue-600"
                 >
                   <span class="ml-3">Performances</span>
                 </a>
@@ -88,10 +88,16 @@
                 <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
                     <!-- Heading -->
                     <div class="flex justify-between p-2 mb-2">
-                        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">All Menu Items</h1>
-                        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            Add Item
-                        </button>
+                        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">All Performances</h1>
+                        <% if ((user && user.type && user.type.includes('student'))) { %>
+                            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Add Performance
+                            </button>
+                        <% } else { %>
+                            <button disabled data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 disabled:opacity-50">
+                                Add Performance
+                            </button>
+                        <% } %>
                     </div>
                     <!-- Main modal -->
                     <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -101,7 +107,7 @@
                                 <!-- Modal header -->
                                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                        New Menu Item
+                                        New Performance
                                     </h3>
                                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -111,16 +117,28 @@
                                     </button>
                                 </div>
                                 <!-- Modal body -->
-                                <form class="p-4 md:p-5" action="/menu/add" method="POST">
+                                <form class="p-4 md:p-5" action="/performances/add" method="POST">
                                     <div class="grid gap-4 mb-4 grid-cols-2">
                                         <div class="col-span-2">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Item Name</label>
-                                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type item name" required="">
+                                            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+                                            <input type="text" name="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type item name" required="">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 mb-4 grid-cols-2">
+                                        <div class="col-span-2">
+                                            <label for="duration" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duration (in seconds)</label>
+                                            <input type="number" name="duration" id="duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type item name" required="">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 mb-4 grid-cols-2">
+                                        <div class="col-span-2">
+                                            <label for="requirements" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Special Requirements</label>
+                                            <input type="text" name="requirements" id="requirements" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type item name" required="">
                                         </div>
                                     </div>
                                     <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                                        Add new item
+                                        Add new performance
                                     </button>
                                 </form>
                             </div>
@@ -132,8 +150,10 @@
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
-                                        <th scope="col" class="px-4 py-3">Item Name</th>
-                                        <th scope="col" class="px-4 py-3">Total Votes</th>
+                                        <th scope="col" class="px-4 py-3">Type</th>
+                                        <th scope="col" class="px-4 py-3">Duration</th>
+                                        <th scope="col" class="px-4 py-3">Proposed By</th>
+                                        <th scope="col" class="px-4 py-3">Special Requirements</th>
                                         <th scope="col" class="px-4 py-3">
                                             <span class="sr-only">Actions</span>
                                         </th>
@@ -141,18 +161,15 @@
                                 </thead>
                                 <tbody>
                                     <!-- Loop over items and populate rows -->
-                                    <% for(var i = 0; i < items.length; i++) {%>
+                                    <% for(var i = 0; i < performances.length; i++) {%>
                                         <tr class="border-b dark:border-gray-700">
-                                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= items[i].ItemName %></th>
-                                            <td class="px-4 py-3"><%= items[i].Votes %></td>
+                                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= performances[i].Type %></th>
+                                            <td class="px-4 py-3"><%= performances[i].Duration %> seconds</td>
+                                            <td class="px-4 py-3"><%= performances[i].ProposedBy %></td>
+                                            <td class="px-4 py-3"><%= performances[i].SpecialRequirements %></td>
                                             <td class="px-4 py-3 flex items-center justify-end">
-                                                <form action="/menu/vote/<%= items[i].MenuItemID %>" method="POST">
-                                                    <button type="submit" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                                        Vote
-                                                    </button>
-                                                </form>
-                                                <% if (user && user.type && user.type.includes('teacher')) { %>
-                                                    <form action="/menu/delete/<%= items[i].MenuItemID %>" method="POST">
+                                                <% if ((user && user.type && user.type.includes('teacher'))) { %>
+                                                    <form action="/performances/delete/<%= performances[i].PerformanceID %>" method="POST">
                                                         <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                                             Delete
                                                         </button>

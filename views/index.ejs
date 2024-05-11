@@ -3,18 +3,18 @@
     <div class="antialiased bg-gray-50 dark:bg-gray-900">
         <!-- Sidebar -->
         <aside
-          class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+          class="fixed flex flex-col left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
           aria-label="Sidenav"
           id="drawer-navigation"
         >
         
         <!-- Nav Items -->
-          <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
+          <div class="py-5 px-3 h-full bg-white dark:bg-gray-800">
             <ul class="space-y-2">
               <li>
                 <a
                   href="#"
-                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  class="inline-flex items-center px-4 py-3 text-white bg-blue-700 rounded-lg active w-full dark:bg-blue-600"
                 >
                   <span class="ml-3">Dashboard</span>
                 </a>
@@ -27,6 +27,58 @@
                   <span class="ml-3">Menu</span>
                 </a>
               </li>
+              <li>
+                <a
+                  href="/performances"
+                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <span class="ml-3">Performances</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/tasks"
+                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <span class="ml-3">Tasks</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/attendance"
+                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <span class="ml-3">Attendance</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/budget"
+                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <span class="ml-3">Budget</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/reports"
+                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <span class="ml-3">Reports</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="py-5 px-3 bg-white dark:bg-gray-800">
+            <ul class="space-y-2">
+				<li>
+					<a
+						href="/logout"
+						class="flex items-center p-2 text-base font-medium text-red-800 rounded-lg dark:text-white hover:bg-red-800 hover:text-white dark:hover:bg-gray-700 group"
+					>
+						<span class="ml-3">Logout</span>
+					</a>
+				</li>
             </ul>
           </div>
         </aside>

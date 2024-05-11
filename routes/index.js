@@ -4,7 +4,7 @@ const router = express.Router();
 // Import other routers
 const authRouter = require('./auth');
 const menuRouter = require('./menu');
-// const performanceRouter = require('./performance');
+const performanceRouter = require('./performance');
 // const taskRouter = require('./tasks');
 // const attendanceRouter = require('./attendance');
 // const budgetRouter = require('./budget');
@@ -13,7 +13,7 @@ const menuRouter = require('./menu');
 // Use routers
 router.use('/', authRouter);
 router.use('/menu', menuRouter);
-// router.use('/performance', performanceRouter);
+router.use('/performances', performanceRouter);
 // router.use('/tasks', taskRouter);
 // router.use('/attendance', attendanceRouter);
 // router.use('/budget', budgetRouter);

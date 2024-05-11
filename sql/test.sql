@@ -1,4 +1,4 @@
 USE fms;
 
-GRANT ALL PRIVILEGES ON `fms`.* TO 'root'@'localhost';
-FLUSH PRIVILEGES;
+-- add 3 performance records
+INSERT INTO Performance (Type, Duration, SpecialRequirements, ProposedBy) VALUES ('Dance', 60, 'Props', 1968);
