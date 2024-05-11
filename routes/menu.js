@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const menuController = require('../controllers/menuController');
+const roleMiddleware = require('../middlewares/roleMiddleware');
 
 // Get all menu items
 router.get('/', menuController.listMenuItems);
@@ -12,6 +13,6 @@ router.post('/add', menuController.postMenuItemSuggestion);
 router.post('/vote/:id', menuController.voteMenuItem);
 
 // Delete menu item
-router.post('/delete/:id', menuController.deleteMenuItem);
+router.post('/delete/:id', roleMiddleware('teacher'), menuController.deleteMenuItem);
 
 module.exports = router;

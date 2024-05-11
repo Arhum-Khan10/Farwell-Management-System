@@ -5,6 +5,9 @@ module.exports.dashboard = (req, res) => {
 }
 
 module.exports.getStudentLogin = (req, res) => {
+    if (req.session.user) {
+        return res.redirect('/');
+    }
     res.render('studentLogin');
 };
 
@@ -17,7 +20,7 @@ module.exports.postStudentLogin = (req, res) => {
         }
         for (let i = 0; i < results.length; i++) {
             if (results[i].Email === email && results[i].Password === password) {
-                // req.session.user = results[i];
+                req.session.user = { id: results[i].StudentID, type: 'student' };
                 return res.redirect('/');
             }
         }
@@ -26,6 +29,9 @@ module.exports.postStudentLogin = (req, res) => {
 };
 
 module.exports.getStudentRegister = (req, res) => {
+    if (req.session.user) {
+        return res.redirect('/');
+    }
     res.render('studentSignup');
 };
 
@@ -42,6 +48,9 @@ module.exports.postStudentRegister = (req, res) => {
 };
 
 module.exports.getTeacherLogin = (req, res) => {
+    if (req.session.user) {
+        return res.redirect('/');
+    }
     res.render('teacherLogin');
 };
 
@@ -54,7 +63,7 @@ module.exports.postTeacherLogin = (req, res) => {
         }
         for (let i = 0; i < results.length; i++) {
             if (results[i].Email === email && results[i].Password === password) {
-                // req.session.user = results[i];
+                req.session.user = { id: results[i].TeacherID, type: 'teacher' };
                 return res.redirect('/');
             }
         }
@@ -63,6 +72,9 @@ module.exports.postTeacherLogin = (req, res) => {
 };
 
 module.exports.getTeacherRegister = (req, res) => {
+    if (req.session.user) {
+        return res.redirect('/');
+    }
     res.render('teacherSignup');
 };
 
@@ -78,6 +90,14 @@ module.exports.postTeacherRegister = (req, res) => {
 };
 
 module.exports.logout = (req, res) => {
-    // Logic to destroy the session
-    res.redirect('/');
+    const person = req.session.user.type;
+    req.session.destroy(err => {
+        if (err) {
+            console.log(err);
+        }
+        if (person === 'teacher') {
+            return res.redirect('/login/teacher');
+        }
+        res.redirect('/login/student');
+    });
 };

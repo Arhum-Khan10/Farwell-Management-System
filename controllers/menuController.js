@@ -7,7 +7,7 @@ exports.listMenuItems = (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.render('menuList', { items });
+            res.render('menuList', { items: items, user: req.session.user });
         }
     });
 };
