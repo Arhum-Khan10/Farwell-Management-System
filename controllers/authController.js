@@ -1,12 +1,8 @@
 const db = require('../config/database');
 
-module.exports.dashboard = (req, res) => {
-    res.render('index');
-}
-
 module.exports.getStudentLogin = (req, res) => {
     if (req.session.user) {
-        return res.redirect('/');
+        return res.redirect('/dashboard');
     }
     res.render('studentLogin');
 };
@@ -20,17 +16,17 @@ module.exports.postStudentLogin = (req, res) => {
         }
         for (let i = 0; i < results.length; i++) {
             if (results[i].Email === email && results[i].Password === password) {
-                req.session.user = { id: results[i].StudentID, type: 'student' };
-                return res.redirect('/');
+                req.session.user = { id: results[i].StudentID, type: ['student', results[i].Role] };
+                return res.redirect('/dashboard');
             }
         }
-        res.redirect('/login/student');
+        res.redirect('/auth/login/student');
     });
 };
 
 module.exports.getStudentRegister = (req, res) => {
     if (req.session.user) {
-        return res.redirect('/');
+        return res.redirect('/dashboard');
     }
     res.render('studentSignup');
 };
@@ -41,15 +37,15 @@ module.exports.postStudentRegister = (req, res) => {
     db.query('INSERT INTO student (StudentID, Name, Email, Password) VALUES (?, ?, ?, ?);', [id, name, email, password], (err, results) => {
         if (err) {
             console.log(err);
-            res.redirect('/register/student');
+            res.redirect('/auth/register/student');
         }
     });
-    res.redirect('/login/student');
+    res.redirect('/auth/login/student');
 };
 
 module.exports.getTeacherLogin = (req, res) => {
     if (req.session.user) {
-        return res.redirect('/');
+        return res.redirect('/dashboard');
     }
     res.render('teacherLogin');
 };
@@ -64,16 +60,16 @@ module.exports.postTeacherLogin = (req, res) => {
         for (let i = 0; i < results.length; i++) {
             if (results[i].Email === email && results[i].Password === password) {
                 req.session.user = { id: results[i].TeacherID, type: 'teacher' };
-                return res.redirect('/');
+                return res.redirect('/dashboard');
             }
         }
-        res.redirect('/login/teacher');
+        res.redirect('/auth/login/teacher');
     });
 };
 
 module.exports.getTeacherRegister = (req, res) => {
     if (req.session.user) {
-        return res.redirect('/');
+        return res.redirect('/dashboard');
     }
     res.render('teacherSignup');
 };
@@ -83,10 +79,10 @@ module.exports.postTeacherRegister = (req, res) => {
     db.query('INSERT INTO teacher (Name, Email, Password) VALUES (?, ?, ?);', [name, email, password], (err, results) => {
         if (err) {
             console.log(err);
-            res.redirect('/register/teacher');
+            res.redirect('/auth/register/teacher');
         }
     });
-    res.redirect('/login/teacher');
+    res.redirect('/auth/login/teacher');
 };
 
 module.exports.logout = (req, res) => {
@@ -96,8 +92,8 @@ module.exports.logout = (req, res) => {
             console.log(err);
         }
         if (person === 'teacher') {
-            return res.redirect('/login/teacher');
+            return res.redirect('/auth/login/teacher');
         }
-        res.redirect('/login/student');
+        res.redirect('/auth/login/student');
     });
 };

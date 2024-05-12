@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS Student (
     Name VARCHAR(100),
     Email VARCHAR(100) UNIQUE,
     Password VARCHAR(100),
+    Role VARCHAR(100),
     DietaryPreferences VARCHAR(255)
 );
 

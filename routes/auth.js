@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
 
-// Dashboard
-router.get('/', authController.dashboard);
-
 // Login routes
 router.get('/login/student', authController.getStudentLogin);
 router.post('/login/student', authController.postStudentLogin);

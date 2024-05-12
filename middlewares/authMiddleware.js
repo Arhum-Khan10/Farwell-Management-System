@@ -1,6 +1,6 @@
 function authMiddleware(req, res, next) {
     // Allow access without login to these paths
-    const openPaths = ['/login/student', '/register/student', '/login/teacher', '/register/teacher', '/public'];
+    const openPaths = ['/', '/auth/login/student', '/auth/register/student', '/auth/login/teacher', '/auth/register/teacher', '/public'];
 
     // debug
     console.log('Session ID:', req.sessionID);
@@ -13,7 +13,7 @@ function authMiddleware(req, res, next) {
         next();  // User is logged in, continue to the route handler
     } else {
         // User is not logged in, redirect to login page
-        res.redirect('/login/student');
+        res.redirect('/auth/login/student');
     }
 }
 

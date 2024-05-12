@@ -24,6 +24,18 @@ exports.createTask = (req, res) => {
     });
 };
 
+exports.completeTask = (req, res) => {
+    const { id } = req.params;
+    db.query('UPDATE Task SET Status = "Complete" WHERE TaskID = ?', [id], (err, result) => {
+        if (err) {
+            console.error("Error completing task:", err);
+            res.status(500).send('Error completing task');
+        } else {
+            res.redirect('/tasks');
+        }
+    });
+};
+
 exports.deleteTask = (req, res) => {
     const { id } = req.params;
     db.query('DELETE FROM Task WHERE TaskID = ?', [id], (err, result) => {

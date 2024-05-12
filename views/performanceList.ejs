@@ -12,7 +12,7 @@
             <ul class="space-y-2">
               <li>
                 <a
-                  href="/"
+                  href="/dashboard"
                   class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   <span class="ml-3">Dashboard</span>
@@ -42,37 +42,33 @@
                   <span class="ml-3">Tasks</span>
                 </a>
               </li>
-              <li>
-                <a
-                  href="/attendance"
-                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  <span class="ml-3">Attendance</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/budget"
-                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  <span class="ml-3">Budget</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/reports"
-                  class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  <span class="ml-3">Reports</span>
-                </a>
-              </li>
+              <% if (user && user.type.includes('teacher')) { %>
+                <li>
+                  <a
+                    href="/attendance"
+                    class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <span class="ml-3">Attendance</span>
+                  </a>
+                </li>
+              <% } %>
+              <% if (user && (user.type.includes('teacher') || user.type.includes('Budget Team'))) { %>
+                <li>
+                  <a
+                    href="/budget"
+                    class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <span class="ml-3">Budget</span>
+                  </a>
+                </li>
+              <% } %>
             </ul>
           </div>
           <div class="py-5 px-3 bg-white dark:bg-gray-800">
             <ul class="space-y-2">
 				<li>
 					<a
-						href="/logout"
+						href="/auth/logout"
 						class="flex items-center p-2 text-base font-medium text-red-800 rounded-lg dark:text-white hover:bg-red-800 hover:text-white dark:hover:bg-gray-700 group"
 					>
 						<span class="ml-3">Logout</span>
@@ -89,7 +85,7 @@
                     <!-- Heading -->
                     <div class="flex justify-between p-2 mb-2">
                         <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">All Performances</h1>
-                        <% if ((user && user.type && user.type.includes('student'))) { %>
+                        <% if ((user && user.type && (user.type.includes('teacher') || user.type.includes('Performances Manager') || user.type.includes('Performance Team')))) { %>
                             <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                 Add Performance
                             </button>
@@ -168,7 +164,7 @@
                                             <td class="px-4 py-3"><%= performances[i].ProposedBy %></td>
                                             <td class="px-4 py-3"><%= performances[i].SpecialRequirements %></td>
                                             <td class="px-4 py-3 flex items-center justify-end">
-                                                <% if ((user && user.type && user.type.includes('teacher'))) { %>
+                                                <% if ((user && user.type && (user.type.includes('teacher') || user.type.includes('Performances Manager')))) { %>
                                                     <form action="/performances/delete/<%= performances[i].PerformanceID %>" method="POST">
                                                         <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                                             Delete
