@@ -80,59 +80,92 @@
         </aside>
     
         <!-- Main -->
-        <main class="p-4 md:ml-64 h-auto pt-20">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-            <div
-              class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-            ></div>
-          </div>
-          <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
-          ></div>
-          <div class="grid grid-cols-2 gap-4 mb-4">
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-            ></div>
-          </div>
-          <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
-          ></div>
-          <div class="grid grid-cols-2 gap-4">
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-            ></div>
-            <div
-              class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-            ></div>
+        <main class="p-4 md:ml-64 h-auto pt-8">
+          <!-- Charts for Dashboard -->
+          <h1 class="text-lg font-semibold text-gray-700 mb-4">Dashboard Analytics</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+              <!-- Budget Chart -->
+              <div class="p-4 border rounded-lg shadow-sm bg-white">
+                  <h3 class="text-md font-medium text-gray-600">Budget Overview</h3>
+                  <canvas id="budgetChart"></canvas>
+              </div>
+              <!-- Menu Items Chart -->
+              <div class="p-4 border rounded-lg shadow-sm bg-white">
+                  <h3 class="text-md font-medium text-gray-600">Menu Votes</h3>
+                  <canvas id="menuChart"></canvas>
+              </div>
+              <!-- Performances Chart -->
+              <div class="p-4 border rounded-lg shadow-sm bg-white">
+                  <h3 class="text-md font-medium text-gray-600">Performance Counts</h3>
+                  <canvas id="performanceChart"></canvas>
+              </div>
           </div>
         </main>
       </div>
 
-      <!-- Flowbite JS -->
+      <!-- Scripts -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        // Parse data from EJS template
+        const budgetData = JSON.parse('<%- budgetData %>');
+        const menuData = JSON.parse('<%- menuData %>');
+        const performanceData = JSON.parse('<%- performanceData %>');
+    
+        // Budget Chart
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        const budgetChart = new Chart(ctxBudget, {
+            type: 'bar',
+            data: {
+                labels: budgetData.map(data => data.Category),
+                datasets: [{
+                    label: 'Budget by Category',
+                    data: budgetData.map(data => data.Total),
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    
+        // Menu Chart
+        const ctxMenu = document.getElementById('menuChart').getContext('2d');
+        const menuChart = new Chart(ctxMenu, {
+            type: 'pie',
+            data: {
+                labels: menuData.map(data => data.ItemName),
+                datasets: [{
+                    label: 'Votes',
+                    data: menuData.map(data => data.Votes),
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+                    borderColor: ['rgba(54, 162, 235, 1)'],
+                    borderWidth: 1
+                }]
+            }
+        });
+    
+        // Performance Chart
+        const ctxPerformance = document.getElementById('performanceChart').getContext('2d');
+        const performanceChart = new Chart(ctxPerformance, {
+            type: 'bar',
+            data: {
+                labels: performanceData.map(data => data.Type),
+                datasets: [{
+                    label: 'Number of Performances',
+                    data: performanceData.map(data => data.Count),
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+                    borderColor: ['rgba(75, 192, 192, 1)'],
+                    borderWidth: 1
+                }]
+            }
+        });
+      </script>
 </body>
 </html>

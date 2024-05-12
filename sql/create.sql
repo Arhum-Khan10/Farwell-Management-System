@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS Teacher (
 CREATE TABLE IF NOT EXISTS FamilyMember (
     FamilyMemberID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(100),
-    Relationship VARCHAR(100),
     TeacherID INT,
     FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID)
 );
