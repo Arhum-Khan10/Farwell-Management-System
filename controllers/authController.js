@@ -59,7 +59,7 @@ module.exports.postTeacherLogin = (req, res) => {
         }
         for (let i = 0; i < results.length; i++) {
             if (results[i].Email === email && results[i].Password === password) {
-                req.session.user = { id: results[i].TeacherID, type: 'teacher' };
+                req.session.user = { id: results[i].TeacherID, type: ['teacher', 'teacher'] };
                 return res.redirect('/dashboard');
             }
         }
